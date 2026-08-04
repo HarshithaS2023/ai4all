@@ -6,7 +6,7 @@ I go to school at UIUC, where the gap between Downtown Champaign and Campus Town
 
 ![Four types of US county](figures/4_cluster_map.png)
 
-**[Go try it](https://county-clustering.streamlit.app)**. Uncheck any measure in the sidebar and the model refits right in front of you. Turn off Minority and Limited English and watch how little actually moves.
+**[Go try it](https://ai4allcountycluserting.streamlit.app/)**. Uncheck any measure in the sidebar and the model refits right in front of you. Turn off Minority and Limited English and watch how little actually moves.
 
 ### What The Mobility Number Means
 
@@ -54,7 +54,7 @@ There is a second problem sitting underneath the first one, and honestly it is t
 
 5. **Four statistical tests for the number of clusters gave four different answers** (silhouette 2, Calinski-Harabasz 2, Davies-Bouldin 9, elbow 3). The project runs 4 anyway and explains why below. Ward hierarchical clustering, which never sees K at all, does not settle it either. Its widest gap is at two groups, not four, and it only agrees with the K-Means grouping moderately once you cut it at four.
 
-6. **[A live interactive version](https://county-clustering.streamlit.app)** lets anybody refit the model themselves. Every checkbox drops a measure and redraws the map, so the claim that these groups depend on what got measured is something you can go test rather than something you have to take on faith.
+6. **[A live interactive version](https://ai4allcountycluserting.streamlit.app/)** lets anybody refit the model themselves. Every checkbox drops a measure and redraws the map, so the claim that these groups depend on what got measured is something you can go test rather than something you have to take on faith.
 
 ## Methodologies
 
