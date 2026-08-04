@@ -9,6 +9,7 @@ Copyright (C) 2026 Maharsh Jani. Licensed under the GNU Affero General
 Public License v3.0 or later. See LICENSE, or <https://www.gnu.org/licenses/>.
 """
 import json
+import os
 import ssl
 from urllib.request import urlopen
 import numpy as np
@@ -64,9 +65,14 @@ BASELINE_SIL = 0.155   # all 17 measures at K=4, from analysis.py
 
 @st.cache_data
 def load():
-    df = pd.read_csv("data/county_svi_mobility.csv", dtype={"FIPS": str}).replace(-999, np.nan)
+    path = "data/county_svi_mobility.csv"
+    if not os.path.exists(path):
+        path = "SVI_2022_US_county.csv"
+    df = pd.read_csv(path, dtype={"FIPS": str}).replace(-999, np.nan)
+    if "CODE2023" not in df.columns:
+        df["CODE2023"] = df["FIPS"]
     df = df.dropna(subset=COLS + ["CODE2023", "E_TOTPOP"]).reset_index(drop=True)
-    df["FIPS"] = df["FIPS"].str.zfill(5)
+    df["FIPS"] = df["FIPS"].astype(str).str.zfill(5)
     df["name"] = df["COUNTY"] + ", " + df["ST_ABBR"]
     # residuals come from analysis.py (cross-validated random forest) if it has been run
     try:
